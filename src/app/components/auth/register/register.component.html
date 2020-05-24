@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-1">
+  </div>
+  <div class="col-5">
+
+    <div id="wrapper">
+      <div id="page-content-wrapper">
+        <div class="example-container mat-elevation-z8">
+          <div class="example-loading-shade" *ngIf="isLoadingResults">
+            <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+          </div>
+          <mat-card class="example-card" >
+            <img src="../../../assets/logo_size2.jpg" style="margin-left: 20%;" width="170px" height="170px">
+            <h1>REGISTER</h1>
+            <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
+              <mat-form-field class="example-full-width">
+                <input matInput type="fullname" placeholder="FullName" formControlName="fullname"
+                  [errorStateMatcher]="matcher">
+                <mat-error>
+                  <span *ngIf="!registerForm.get('fullname').valid && registerForm.get('fullname').touched">Introduzca
+                    un
+                    nombre</span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput type="email" placeholder="Email" formControlName="email" [errorStateMatcher]="matcher"
+                  ngModel [email]="true">
+                <mat-error>
+                  <span *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">Introduzca un
+                    correo.</span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput type="password" placeholder="Password" formControlName="password"
+                  [errorStateMatcher]="matcher">
+                <mat-error>
+                  <span *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched">Introduzca
+                    una
+                    contraseña de almenos 5 caracteres.</span>
+                </mat-error>
+              </mat-form-field>
+              <div class="button-row">
+                <button type="submit" [disabled]="!registerForm.valid" mat-flat-button color="primary">Register</button>
+                <button style="margin-left: 10px;" type="button" mat-flat-button color="primary" (click)="login()">Login</button>
+              </div>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+
+  </div>

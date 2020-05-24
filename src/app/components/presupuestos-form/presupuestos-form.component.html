@@ -1,0 +1,194 @@
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="col-md-15 col-sm-15 mb-15">
+      <div class="card h-100">
+        <div class="card-body">
+
+          <!-- Container dónde esta el select para seleccionar Cliente -->
+          <div class="form-group ">
+            <label>Selecciona Cliente:</label>
+
+            <select id="inputClientes" [ngModel]="selectedCliente" (ngModelChange)="RecogerSelect($event)"
+              class="form-control">
+              <option [ngValue]="cliente" *ngFor="let cliente of clientes">{{cliente.nombre}}</option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form id="formPresupuesto">
+            <!--inputs que se ven -->
+            <div class="form-group">
+
+              <input style="display: none;" id="inputIDPresupuesto" name="idpresupuesto" [(ngModel)]="presupuesto.id"
+                rows="2" class="form-control">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputNombreCliente" class="bmd-label-floating">Nombre</label>
+                <input id="inputNombreCliente" type="text" name="nombre_cliente"
+                  [(ngModel)]="presupuesto.nombre_cliente" class="form-control" autofocus>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputApellidoCliente" class="bmd-label-floating">Apellido</label>
+                <input id="inputApellidoCliente" name="apellido_cliente" [(ngModel)]="presupuesto.apellido_cliente"
+                  class="form-control">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputDNICliente" class="bmd-label-floating">DNI</label>
+                <input id="inputDNICliente" name="dni" [(ngModel)]="presupuesto.dni" rows="2" class="form-control">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputTelefonoCliente" class="bmd-label-floating">Telefono</label>
+                <input type="number" id="inputTelefonoCliente" name="telefono" [(ngModel)]="presupuesto.telefono"
+                  class="form-control">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputCorreoCliente" class="bmd-label-floating">Email</label>
+                <input id="inputCorreoCliente" name="correo" [(ngModel)]="presupuesto.correo" rows="2"
+                  class="form-control">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputDireccionCliente" class="bmd-label-floating">Direccion</label>
+                <input id="inputDireccionCliente" name="direccion" [(ngModel)]="presupuesto.direccion" rows="2"
+                  class="form-control">
+              </div>
+            </div>
+            <!-- -->
+
+
+
+            <!-- Aquí irá la tabla para añadir productos -->
+            <!-- Botón que abre el modal de productos -->
+            <button type="button" class="btn btn-raised btn-success btn-block" data-toggle="modal"
+              data-target="#myModal" style="background-color: #00695C;">
+              + PRODUCTOS
+            </button>
+            <div class="form-group" id="pruebatablaproductos">
+              <table class="table mt-9 table-striped" id="tablafactura">
+                <thead>
+                  <tr>
+                    <th scope="col">NOMBRE ARTICULO.</th>
+                    <th scope="col">PRECIO X UNIDAD.</th>
+                    <th scope="col">CANTIDAD.</th>
+                    <th scope="col">PRECIO TOTAL.</th>
+                    <th scope="col"> Acciones.</th>
+                  </tr>
+                </thead>
+                <tbody id="lineaf">
+                  <tr *ngFor="let producto of lineafactura; let i = index">
+                    <td><input id="productoPresupuestoNombre" name="nombre" value="{{producto.nombre}}" /></td>
+                    <td><input step="0.01" id="productoPresupuestoPrecio" name="nombre" value="{{producto.precio}}" /></td>
+                    <td><input type="number" id="{{producto.nombre}}" name="numero"
+                        (click)="calculoslineaventa(producto, producto.cantidad)" value="{{producto.cantidad}}" /></td>
+                    <td><input id="productoPresupuestoPrecioTotal" name="nombre" value="{{producto.precio_total}}" />
+                    </td>
+                    <td><button type="submit" class="btn btn-raised btn-danger btn-sm"
+                        (click)="removeLanguague(producto, i)" style="background-color: #00695C;">BORRAR</button></td>
+                  </tr>
+                </tbody>
+                <tfoot id="lineafooter">
+                  <tr>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td>SUBTOTAL € <input id="subtotal" type="text" class="form-control col-lg-12" /></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>IVA % <input id="iva" type="number" name="inputIva" class="form-control col-lg-12"
+                        (click)="calculoiva()" /></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> TOTAL <input id="total" step=".01" type="number" class="form-control col-lg-11 " /></td>
+                    <td>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <!--Div del article item-->
+            <!-- -->
+
+
+            <!-- Si edit está en true, actualizamos, si está en false se crea uno nuevo -->
+            <button class="btn btn-raised btn-success btn-block"
+              (click)="edit ? updatePresupuesto() : saveNewPresupuesto()" style="background-color: #00695C;">
+              Guardar Presupuesto
+            </button>
+            <button class="btn btn-raised btn-success btn-block" (click)="descargarPDF()" style="background-color: #00695C;">
+              Generar PDF
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- The Modal -->
+
+<div>{{alerta2}}</div>
+<div class="modal" id="myModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+  <div style="position: fixed; margin-top: 1%; margin-left: 18%;">
+    
+    <button type="button" class="btn btn-danger" style="background-color: #f44336; color: white;" data-dismiss="modal"><i class="fas fa-arrow-left"></i> Cerrar</button>
+  </div>
+  <div class="modal-dialog-centered" style="margin-left: 25%;">
+    
+    
+    <div class="modal-content" style="width: 70%;">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">AÑADIR PRODUCTOS AL PRESUPUESTO</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        
+        <input type="text" class="form-control" name="filterPost" placeholder="Search..." [(ngModel)]="filterPost">
+        <div class="card-group">
+          <form id="formProductos">
+            <div class="row">
+              <div class="col-6" *ngFor="let product of productos | filter:filterPost">
+                <div class="card">
+                  <img src="{{product.image}}" class="card-img-top">
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.nombre}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{product.precio}} euros</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                    <p class="card-text"><small class="text-muted"><button class="btn btn-success btn-block"
+                          (click)="probando(product)" style="background-color: #00695C; color: white;">
+                          Añadir Producto
+                        </button></small><input id="{{product.nombre}}" type="number" name="cantidadProducto"
+                        class="form-control col-lg-12" value="product.cantidad" /> </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

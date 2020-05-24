@@ -1,0 +1,68 @@
+<font size=2>clientes</font>
+<div id="wrapper">
+    <div id="page-content-wrapper">
+        <!-- Sin cold-md-4 se centra -->
+        <div>
+            <h1>Clientes</h1>
+            <a routerLink="/clientes/add" routerLinkActive="active">
+            <i class="fas fa-plus-circle"></i>Añadir</a>
+
+            <div class="table-responsive">
+                <table class="table">
+
+                    <thead style="background-color: #26A69A;">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cliente of clientes">
+
+
+
+                            <td>{{cliente.nombre}}</td>
+                            <td>{{cliente.apellido}}</td>
+                            <td>{{cliente.dni}}</td>
+                            <td>{{cliente.direccion}}</td>
+                            <td>{{cliente.telefono}}</td>
+                            <td>{{cliente.correo}}</td>
+                            <td>
+                                <div class="btn-group"> <button [routerLink]="['/clientes/edit', cliente.id]"
+                                        class="btn btn-raised" style="background-color: #64FFDA;">EDITAR</button>
+                                    <button class="btn btn-raised btn-danger btn-sm"
+                                        (click)="deleteCliente(cliente.id)">BORRAR</button> </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- CARD -->
+
+    <!-- 
+     <div class="card text-center">
+         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+             {{proveedor.nombre}}
+             <button class="btn btn-danger" (click)="deleteProveedor(proveedor.id)">
+                 <i class="fas fa-trash"></i>
+             </button>
+         </div>
+         <img src="{{proveedor.image}}" class="card-img-top">
+         <div class="card-body">
+             <p>{{proveedor.descripcion}}</p>
+             <a [routerLink]="['/proveedores/edit', proveedor.id]" class="btn btn-info btn-block">
+                 EDITAR PROVEEDOR
+ 
+             </a>
+         </div>
+     </div>
+ 
+ </div> -->

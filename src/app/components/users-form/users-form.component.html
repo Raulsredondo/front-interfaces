@@ -1,0 +1,48 @@
+
+<font size=2>usuarios > {{usuario.nombre == '' ? 'nuevo usuario' : usuario.nombre}} </font>
+<h1>{{usuario.nombre == '' ? 'nuevo usuario' : usuario.nombre}}</h1>
+<div id="wrapper">
+    <div id="page-content-wrapper">
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    
+    <mat-card class="example-card">
+      
+      <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nombre Completo" formControlName="fullname"
+                 [errorStateMatcher]="matcher"[ngClass]="{ 'is-invalid': submitted && f.fullname.errors }">
+                 <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                  <div *ngIf="f.fullname.errors.required">First Name is required</div>
+              </div>
+          <mat-error>
+            <span *ngIf="!userForm.get('fullname').valid && userForm.get('fullname').touched">Porfavor introduce un nombre</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput type="email" name="email" placeholder="Email" formControlName="email"
+                 [errorStateMatcher]="matcher"  ngModel [email]="true">
+          <mat-error>
+            <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched">Introduzca un correo válido</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" placeholder="Password" formControlName="password"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!userForm.get('password').valid && userForm.get('password').touched">Minimo 5 caracteres.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="button-row">
+          <button class="btnSave" type="submit" [disabled]="!userForm.valid" mat-flat-button color="primary">Guardar</button>
+          <a mat-flat-button color="primary" (click)="back()">Volver</a>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  </div>
+  </div>

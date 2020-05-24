@@ -1,0 +1,83 @@
+<font size=2>productos</font>
+<div id="wrapper">
+    <div id="page-content-wrapper">
+        <!-- Sin cold-md-4 se centra -->
+        <div>
+            <h1>Productos</h1>
+            <a routerLink="/productos/add" routerLinkActive="active"><i class="fas fa-plus-circle"></i>Añadir</a>
+            <table class="table">
+                <thead>
+                    <th>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                
+                            </li>
+                        </ul>
+                    </th>
+
+                </thead>
+            </table>
+            <div class="table-responsive">
+                <table class="table">
+
+                    <thead style="background-color: #26A69A;">
+                        <tr>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Proveedor</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of productos">
+
+
+                            <td><img src="{{producto.image}}" class="imagen" width="10px"></td>
+                            <td>{{producto.nombre}}</td>
+                            <td>{{producto.proveedor}}</td>
+                            <td>{{producto.precio}}</td>
+                            <td>{{producto.stock}}</td>
+                            <td>{{producto.descripcion}}</td>
+                            <td>
+                                <div class="btn-group"> <button [routerLink]="['/productos/edit', producto.id]"
+                                        class="btn btn-raised btn-block" style="background-color: #64FFDA;">
+                                        EDITAR </button> <button class="btn btn-raised btn-danger"
+                                        (click)="deleteProducto(producto.id)">
+                                        BORRAR
+                                    </button></div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-raised btn-danger" (click)="descargarPDF()">
+        PDF Productos
+    </button>
+
+    <!-- CARD -->
+
+    <!-- 
+     <div class="card text-center">
+         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+             {{proveedor.nombre}}
+             <button class="btn btn-danger" (click)="deleteProveedor(proveedor.id)">
+                 <i class="fas fa-trash"></i>
+             </button>
+         </div>
+         <img src="{{proveedor.image}}" class="card-img-top">
+         <div class="card-body">
+             <p>{{proveedor.descripcion}}</p>
+             <a [routerLink]="['/proveedores/edit', proveedor.id]" class="btn btn-info btn-block">
+                 EDITAR PROVEEDOR
+ 
+             </a>
+         </div>
+     </div>
+ 
+ </div> -->

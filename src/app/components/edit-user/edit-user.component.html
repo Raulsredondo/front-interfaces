@@ -1,0 +1,61 @@
+
+
+<div id="wrapper">
+    <div id="page-content-wrapper">
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      
+    </div>
+    <mat-card class="example-card">
+     <div align="center"><img [src]="transform()"></div>
+       <button (click)="deletePhoto()">
+          Eliminar Foto
+      </button>
+      <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nombre Completo" formControlName="fullname"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!userForm.get('fullname').valid && userForm.get('fullname').touched">Please enter Title</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="email"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched">Please enter prod Desc</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" placeholder="Password" formControlName="password"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!userForm.get('password').valid && userForm.get('password').touched">Please enter Description</span>
+          </mat-error>
+        </mat-form-field>
+        
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          
+          <div class="form-group">
+            <label for="file"></label>
+            <input type="file" id="avatar"
+                   (change)="onFileChange($event)" #fileInput>
+            
+            
+          </div>
+        </form>
+      
+        
+      
+        <div class="button-row">
+          
+          <button class="btnSave" type="submit" [disabled]="!userForm.valid" mat-flat-button color="primary">Guardar</button>
+          <a mat-flat-button color="primary" (click)="back()">Volver</a>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  </div>
+  </div>

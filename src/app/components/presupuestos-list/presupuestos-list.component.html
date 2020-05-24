@@ -1,0 +1,48 @@
+<div id="wrapper">
+    <div id="page-content-wrapper">
+        <!-- Sin cold-md-4 se centra -->
+        <div>
+            <h1>Presupuestos</h1>
+            <a class="nav-link" routerLink="/presupuestos/add" routerLinkActive="active"><i
+                    class="fas fa-plus-circle"></i></a>
+            <div class="table-responsive">
+                <table class="table">
+
+                    <thead style="background-color: #26A69A;">
+                        <tr>
+                            <th scope="col">ID Presupuesto</th>
+                            <th scope="col">Nombre Cliente</th>
+                            <th scope="col">Apellido Cliente</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let presupuesto of presupuestos">
+
+
+                            <td>{{presupuesto.id}}</td>
+                            <td>{{presupuesto.nombre_cliente}}</td>
+                            <td>{{presupuesto.apellido_cliente}}</td>
+                            <td>{{presupuesto.dni}}</td>
+                            <td>{{presupuesto.telefono}}</td>
+                            <td>{{presupuesto.correo}}</td>
+                            <td>
+                                <div class="btn-group"> 
+                                    <button [routerLink]="['/presupuestos/edit', presupuesto.id]" style="background-color: #64FFDA;" class="btn btn-raised btn-block">EDITAR </button> 
+                                    <button class="btn btn-raised btn-danger"(click)="deletePresupuesto(presupuesto.id)">BORRAR</button>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

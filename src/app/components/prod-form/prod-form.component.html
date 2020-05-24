@@ -1,0 +1,48 @@
+
+
+<font size=2>productos > {{producto.nombre == '' ? 'nuevo producto' : producto.nombre}} </font>
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h1>{{producto.nombre == '' ? 'Nuevo Producto' : producto.nombre}}</h1>
+
+                <form>
+                    <div class="form-group">
+                        <input type="text" name="nombre" [(ngModel)]="producto.nombre" placeholder="Nombre" class="form-control" autofocus>
+                    </div>
+
+                    <!-- Fill de Proveedores -->
+                    <div class="form-group ">
+                     
+                            <select (click)="prueba()" id="inputProveedores" class="form-control"> 
+                          <option  selected *ngFor="let proveedor of proveedores">{{proveedor.nombre}}</option>
+                          
+                        </select>
+                      </div>
+
+                    <div class="form-group">
+                        <input type="text" style="display: none;" id="inputProveedores2" name="proveedor"  [(ngModel)]="producto.proveedor" placeholder="Proveedor" class="form-control">
+                    </div>
+                
+
+                    <div class="form-group">
+                        <input type="number" name="stock" [(ngModel)]="producto.stock" placeholder="Stock" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="descripcion" [(ngModel)]="producto.descripcion" placeholder="Descripcion" rows="2" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" step="any" name="precio" [(ngModel)]="producto.precio" placeholder="Precio" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="string" name="image" [(ngModel)]="producto.image" placeholder="Image" class="form-control">
+                    </div>
+                    <!-- Si edit está en true, actualizamos, si está en false se crea uno nuevo -->
+                    <button class="btn btn-raised btn-block" style="background-color: #00695C; color: white;" (click)="edit ? updateProducto() : saveNewProducto()">
+                        Save
+                    </button>
+                    <a mat-flat-button color="primary" (click)="back()">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>

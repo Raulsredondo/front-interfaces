@@ -1,0 +1,75 @@
+<font size=2>proveedores</font>
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    
+    <!-- Sin cold-md-4 se centra -->
+    <div>
+      <h1 class="table">Proveedores</h1>
+      <a routerLink="/proveedores/add" routerLinkActive="active"><i class="fas fa-plus-circle"></i>Añadir</a>
+      <table class="table">
+        <thead>
+          <th>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+
+              </li>
+            </ul>
+          </th>
+
+        </thead>
+      </table>
+      <div class="table">
+        <table class="table-responsive">
+
+          <thead style="background-color:#26A69A;">
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Calle</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let proveedor of proveedores">
+
+
+
+              <td>{{proveedor.nombre}}</td>
+              <td>{{proveedor.calle}}</td>
+              <td>{{proveedor.telefono}}</td>
+              <td>
+                <div class="btn-group">
+                  <button [routerLink]="['/proveedores/edit', proveedor.id]" style="background-color: #64FFDA;"
+                    class="btn btn-raised btn-block">EDITAR</button>
+                  <button class="btn btn-raised btn-danger" (click)="deleteProveedor(proveedor.id)">BORRAR</button>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD -->
+
+  <!-- 
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            {{proveedor.nombre}}
+            <button class="btn btn-danger" (click)="deleteProveedor(proveedor.id)">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        <img src="{{proveedor.image}}" class="card-img-top">
+        <div class="card-body">
+            <p>{{proveedor.descripcion}}</p>
+            <a [routerLink]="['/proveedores/edit', proveedor.id]" class="btn btn-info btn-block">
+                EDITAR PROVEEDOR
+
+            </a>
+        </div>
+    </div>
+
+</div> -->

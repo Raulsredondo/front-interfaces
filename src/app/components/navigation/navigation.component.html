@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg" style="background-color:#009688;" *ngIf="nav.visible">
+  <a class="navbar-brand" href="#"><img src="../../../assets/logo_size.jpg" width="80" height="80" alt=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a routerLink="/users" routerLinkActive="active" style="color: white;"><i
+                      class="fas fa-users-cog"></i></a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="/proveedores" routerLinkActive="active" style="color: white;"><i
+                      class="fas fa-parachute-box"></i></a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="/productos" routerLinkActive="active" style="color: white;"><i
+                      class="fas fa-shopping-basket"></i></a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="/clientes" routerLinkActive="active" style="color: white;"><i
+                      class="fas fa-handshake"></i></a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="/presupuestos" routerLinkActive="active" style="color: white;"><i
+                      class="fas fa-file-invoice-dollar"></i></a>
+          </li>
+      </ul>
+      <span class="navbar-text">
+          <a class="nav-link" (click)="logout()" routerLinkActive="active"
+              style="color: antiquewhite;">Cerrar Sesion</a>
+      </span>
+  </div>
+</nav>

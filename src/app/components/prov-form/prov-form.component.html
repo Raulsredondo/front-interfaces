@@ -1,0 +1,31 @@
+<font size=2>proveedores > {{proveedor.nombre == '' ? 'nuevo proveedor' : proveedor.nombre}} </font>
+<div class="col-md-6 offset-md-1">
+    <div class="card">
+        <div class="card-body">
+            <h1>{{proveedor.nombre == '' ? 'Nuevo proveedor' : proveedor.nombre}} </h1>
+            <form>
+                <div class="form-group">
+                    <input type="text" name="nombre" [(ngModel)]="proveedor.nombre" placeholder="Nombre"
+                        class="form-control" autofocus>
+                </div>
+                <div class="form-group">
+                    <textarea name="calle" [(ngModel)]="proveedor.calle" placeholder="Calle"
+                        class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea name="telefono" [(ngModel)]="proveedor.telefono" placeholder="Telefono"
+                        class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea name="descripcion" [(ngModel)]="proveedor.descripcion" placeholder="Descripcion" rows="2"
+                        class="form-control"></textarea>
+                </div>
+                <div class="button-row">
+                    <button class="btn btn-raised btn-block" style="background-color: #00695C; color: white;"
+                        (click)="edit ? updateProveedor() : saveNewProveedor()">Guardar</button>
+                    <a mat-flat-button color="primary" (click)="back()">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

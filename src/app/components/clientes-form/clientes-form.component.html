@@ -1,0 +1,36 @@
+<font size=2>clientes > {{cliente.nombre == '' ? 'nuevo cliente' : cliente.nombre}} </font>
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h1>{{cliente.nombre == '' ? 'Nuevo cliente' : cliente.nombre}}</h1>
+                <form>
+                    <div class="form-group">
+                        <input type="text" name="nombre" [(ngModel)]="cliente.nombre" placeholder="Nombre" class="form-control" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="apellido"  [(ngModel)]="cliente.apellido" placeholder="Apellidos" class="form-control">
+                    </div>
+                
+                    <div class="form-group">
+                        <input type="number" name="telefono" [(ngModel)]="cliente.telefono" placeholder="Telefono" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="dni" [(ngModel)]="cliente.dni" placeholder="DNI" rows="2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="direccion" [(ngModel)]="cliente.direccion" placeholder="Direccion" rows="2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email" [(ngModel)]="cliente.correo" placeholder="email" rows="2" class="form-control">
+                    </div>
+                    
+                    <!-- Si edit está en true, actualizamos, si está en false se crea uno nuevo -->
+                    <button class="btn btn-raised btn-block" style="background-color: #00695C; color: white;" (click)="edit ? updateCliente() : saveNewCliente()">
+                        Save
+                    </button>
+                    <a mat-flat-button color="primary" (click)="back()">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>
